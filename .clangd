@@ -1,0 +1,16 @@
+CompileFlags:
+    Add: [
+        "-std=c++23",
+        "--target=x86_64-pc-windows-msvc", 
+        "-fms-compatibility",
+        "-fms-extensions",
+        "-D_WIN32",
+        "-D_CRT_SECURE_NO_WARNINGS",
+        "-fmodule-file=std=C:/cpp_modules/Clang/std.pcm",
+        "-fmodule-file=FLL.Core.Defines=./FLL_Library/include/FLL_Base/FLL_Base_Defines.pcm",
+        "-fmodule-file=FLL.Core.Types=./FLL_Library/include/FLL_Base/FLL_Base_Types.pcm",
+        "-I.",
+        "-I./F_Library/include"
+    ]
+Index:
+    Background: Build

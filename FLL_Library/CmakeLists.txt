@@ -1,0 +1,7 @@
+cmake_minimum_required(4.3.0)
+set(CMAKE_CXX_COMPILER "clang++" CACHE FILEPATH "" FORCE)
+project(F_Library LANGUAGE CXX)
+
+set(CXX_STANDARD 23)
+set(CXX_STANDARD_REQUIRED ON)
+add_executable(${PROJECT_NAME} )

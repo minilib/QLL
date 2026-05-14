@@ -1,0 +1,47 @@
+/MyProjectRoot
+├── /Common                         # 【共通基盤】OS非依存 + インターフェース
+│   ├── /Base
+│   │   ├── Types.cppm             # uint32_t 等の型定義
+│   │   ├── Macros.cppm            # ASSERT, StaticAssert, OS判定
+│   │   └── Config.cppm            # ビルド設定
+│   ├── /Math
+│   │   ├── Vector.cppm            # Vec2, Vec3
+│   │   ├── Matrix.cppm            # Mat4
+│   │   └── Rect.cppm              # 矩形定義（2D描画・UI用）
+│   ├── /Graphics
+│   │   ├── Color.cppm             # RGBA色定義
+│   │   └── IRenderer2D.cppm       # 2D描画の純粋仮想インターフェース
+│   ├── /Platform
+│   │   ├── Window.cppm            # IWindowインターフェース
+│   │   ├── Input.cppm             # キー入力・マウスイベント定義
+│   │   └── FileSystem.cppm        # IFileSystemインターフェース
+│   └── /Util
+│       ├── Logger.cppm             # ログ出力
+│       └── Timer.cppm              # 時間・デルタタイム計測
+│
+├── /Engine                          # 【ゲームエンジン】ゲーム特化ロジック
+│   ├── /Renderer
+│   │   ├── EngineRenderer2D.cppm  # IRenderer2Dの実装（ゲーム向け高速描画）
+│   │   ├── SpriteBatch.cppm       # 大量描画のバッチング
+│   │   └── TextureManager.cppm    # ゲーム用アセット管理
+│   ├── /Scene
+│   │   ├── World.cppm             # シーン・エンティティ管理
+│   │   └── Component.cppm         # キャラクター・物理定義
+│   └── EngineCore.cppm             # ゲームループ制御
+│
+├── /AppFramework                    # 【アプリ用ライブラリ】GUI・一般ツール用
+│   ├── /UI
+│   │   ├── Canvas.cppm            # アプリ向け2D描画（IRenderer2Dを所有）
+│   │   ├── Widget.cppm            # UI部品の基底（Button, Sliderなど）
+│   │   └── Layout.cppm            # ウィンドウのリサイズ対応など
+│   ├── /Event
+│   │   └── EventDispatcher.cppm   # アプリケーションイベント配信
+│   └── AppCore.cppm                # アプリケーションのライフサイクル
+│
+└── /PlatformImpl                    # 【OS依存の実装】ここだけにOSのヘッダを置く
+    ├── /Win32                       # Windows実装
+    │   ├── Win32Window.cpp         # <Windows.cppm> を含む
+    │   ├── Win32FileSystem.cpp
+    │   └── SoftwareRenderer.cpp    # CPUでの2Dピクセル書き込み実装
+    │   └── Win32GraphicsDevice.cpp # ←ここ！ OSへの絵の転送（GDI/BitBlt）を担当
+    └── /Linux                       # (将来の拡張用)
