@@ -11,8 +11,8 @@
 #define NOGDI
 #define NOUSER
 #include <Windows.h>
-export module FLL.Base.Timer;
-import FLL.Core.Types;
+export module FLL.Core.Base.Timer;
+import FLL.Core.Base.Types;
 import std;
 using namespace std::chrono;
 export namespace FLL {

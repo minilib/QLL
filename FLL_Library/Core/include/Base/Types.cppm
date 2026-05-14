@@ -1,4 +1,4 @@
-export module FLL.Base.Types;
+export module FLL.Core.Base.Types;
 import std;
 
 

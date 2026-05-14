@@ -1,3 +1,4 @@
 *.o
 *.obj
-*.cppm
+*.exe
+*.pcm

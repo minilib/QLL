@@ -1,6 +1,6 @@
-export module FLL.Core:log;
+export module FLL.Core.Core:log;
 import std;
-import FLL.Base.Types;
+import FLL.Core.Base.Types;
 #ifndef LOG_LEVEL
     #ifdef NDEBUG
         #define LOG_LEVEL 3
