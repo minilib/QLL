@@ -3,3 +3,4 @@
 *.exe
 *.pcm
 build/
+.cache/
