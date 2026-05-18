@@ -1,4 +1,4 @@
-export module FLL.Core.Core:log;
+export module FLL.Core.Core:Log;
 import std;
 import FLL.Core.Base.Types;
 #ifndef LOG_LEVEL
