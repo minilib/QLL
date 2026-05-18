@@ -1,0 +1,42 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "Clang",
+	"compiler-simulate-id" : "",
+	"config" : "",
+	"cxx-modules" : 
+	{
+		"CMakeFiles/FLL_Core.dir/include/Base/Macros.cppm.obj" : 
+		{
+			"bmi-only" : false,
+			"destination" : "include",
+			"name" : "modules",
+			"relative-directory" : "Base",
+			"source" : "C:/dev/C++/FLL/Core/include/Base/Macros.cppm",
+			"type" : "CXX_MODULES",
+			"visibility" : "PUBLIC"
+		},
+		"CMakeFiles/FLL_Core.dir/include/Base/Types.cppm.obj" : 
+		{
+			"bmi-only" : false,
+			"destination" : "include",
+			"name" : "modules",
+			"relative-directory" : "Base",
+			"source" : "C:/dev/C++/FLL/Core/include/Base/Types.cppm",
+			"type" : "CXX_MODULES",
+			"visibility" : "PUBLIC"
+		}
+	},
+	"database-info" : null,
+	"dir-cur-bld" : "C:/dev/C++/FLL/Core/build",
+	"dir-cur-src" : "C:/dev/C++/FLL/Core",
+	"dir-top-bld" : "C:/dev/C++/FLL/Core/build",
+	"dir-top-src" : "C:/dev/C++/FLL/Core",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "C:/dev/C++/FLL/Core/build/CMakeFiles/FLL_Core.dir",
+	"sources" : {}
+}
