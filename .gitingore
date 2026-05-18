@@ -2,3 +2,5 @@
 *.obj
 *.exe
 *.pcm
+build/
+.cache/

@@ -1,7 +1,6 @@
 export module FLL.Core.Base.Types;
 import std;
 
-
 export namespace FLL {
     #if defined(__STDCPP_FLOAT64_T__)
         using f4 = std::float32_t;
