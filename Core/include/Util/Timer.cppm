@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT OR Apache-2.0
 export module FLL.Core.Base.Timer;
 import FLL.Core.Base.Types;
 import std;

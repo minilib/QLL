@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT OR Apache-2.0
 export module FLL.Core.Core:Log;
 import std;
 import FLL.Core.Base.Types;
