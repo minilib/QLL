@@ -2,7 +2,7 @@
 # FLL
 Foundation Lightweight Library
 Status: Under Development (Alpha)
-Requirements: To use the library, you need a compiler that fully supports C++23 (e.g., GCC 13 or later, Clang 18 or later, MSVC 2022 17.8 or later).
+Requirements: To use the library, you need a compiler that fully supports C++23 (e.g., GCC 13 or later, Clang 18 or later, MSVC 2022 17.8 or later),but it will work more smoothly with C++26.
 ## What is FLL?
 A library usable in both regular app and game development, planned to be cross-platform in the future.
 This project is in a very early alpha stage.

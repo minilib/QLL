@@ -47,34 +47,64 @@ class Logger {
                 std::memcpy(&huge_buffer_[offset_], label, labelLen);
                 offset_ += labelLen;
             }
-            
-            template for (auto val : args) {
-                if constexpr (std::is_arithmetic_v<decltype(val)>) {
-                    auto [ptr, ec] = std::to_chars(buffer, buffer + sizeof(buffer), val);
-                    size_t len = static_cast<size_t>(ptr - buffer);
-                    if (offset_ + len < sizeof(huge_buffer_) - 1) {
-                        std::memcpy(&huge_buffer_[offset_], buffer, len);
-                        offset_ += len;
+            #if defined(__cpp_expansion_statements)
+                template for (auto val : args) {
+                    if constexpr (std::is_arithmetic_v<decltype(val)>) {
+                        auto [ptr, ec] = std::to_chars(buffer, buffer + sizeof(buffer), val);
+                        size_t len = static_cast<size_t>(ptr - buffer);
+                        if (offset_ + len < sizeof(huge_buffer_) - 1) {
+                            std::memcpy(&huge_buffer_[offset_], buffer, len);
+                            offset_ += len;
+                        } else {
+                            printf("%s", huge_buffer_);
+                            offset_ = 0;
+                            std::memcpy(&huge_buffer_[offset_], buffer, len);
+                            offset_ += len;
+                        }
                     } else {
-                        printf("%s", &huge_buffer_);
-                        offset_ = 0;
-                        std::memcpy(&huge_buffer_[offset_], val.data(), len);
-                        offset_ += len;
-                    }
-                } else {
-                    std::string_view sv = val;
-                    size_t len = sv.size();
-                    if (offset_ + len < sizeof(huge_buffer_) - 1) {
-                        std::memcpy(huge_buffer_ + offset_, sv.data(), len);
-                        offset_ += len;
-                    } else {
-                        printf("%s", huge_buffer_);
-                        offset_ = 0;
-                        std::memcpy(huge_buffer_, sv.data(), len);
-                        offset_ += len;
+                        std::string_view sv = val;
+                        size_t len = sv.size();
+                        if (offset_ + len < sizeof(huge_buffer_) - 1) {
+                            std::memcpy(huge_buffer_ + offset_, sv.data(), len);
+                            offset_ += len;
+                        } else {
+                            printf("%s", huge_buffer_);
+                            offset_ = 0;
+                            std::memcpy(huge_buffer_, sv.data(), len);
+                            offset_ += len;
+                        }
                     }
                 }
-            }
+            #else
+                ([&](auto val) {
+                    if constexpr (std::is_arithmetic_v<decltype(val)>) {
+                        auto [ptr, ec] = std::to_chars(buffer, buffer + sizeof(buffer), val);
+                        size_t len = static_cast<size_t>(ptr - buffer);
+                        if (offset_ + len < sizeof(huge_buffer_) - 1) {
+                            std::memcpy(&huge_buffer_[offset_], buffer, len);
+                            offset_ += len;
+                        } else {
+                            printf("%s", huge_buffer_);
+                            offset_ = 0;
+                            std::memcpy(&huge_buffer_[offset_], buffer, len);
+                            offset_ += len;
+                        }
+                    } else {
+                        std::string_view sv = val;
+                        size_t len = sv.size();
+                        if (offset_ + len < sizeof(huge_buffer_) - 1) {
+                            std::memcpy(huge_buffer_ + offset_, sv.data(), len);
+                            offset_ += len;
+                        } else {
+                            printf("%s", huge_buffer_);
+                            offset_ = 0;
+                            std::memcpy(huge_buffer_, sv.data(), len);
+                            offset_ += len;
+                        }
+                    }
+                }(args), ...);
+            #endif
+
         };
         template<typename... Args>
         static void Debug(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(L::Debug) >= LOG_LEVEL) Log(L::Debug, format, args...); }
