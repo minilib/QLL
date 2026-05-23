@@ -9,6 +9,7 @@ This project is in a very early alpha stage.
 * **Do not use** at this time. It is not fully functional and has incomplete features.
 * We will be actively adding code and rewriting the core architecture over the next 6 months or more.
 * A usable preview version is planned for release around late 2026.
+* No testing has **been done at all**. Therefore, I think there will be bugs.
 We plan to write Windows code first for OS-dependent code, with future support for Linux and Mac.
 ## About the License
 This project is provided under both the **MIT License** and the **Apache License 2.0**.
