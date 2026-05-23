@@ -1,21 +1,19 @@
 Contributing Guidelines 下に日本語があります
 
+Guide to Contributing
+
 Thank you for your interest in this project!
+We welcome your contributions, whether they be bug reports or feature suggestions.
 
-We welcome your cooperation, including bug reports and feature suggestions.
+1. Reporting an Issue
+If you find a bug or would like to suggest a new feature, please create an issue by following the steps below.
+First, check to see if an issue with the same content has already been created.
+Click “New issue” under the “Issues” tab at the top of the screen.
+Please provide detailed information about the issue, including the problem description, steps to reproduce it, and the expected behavior.
+It is fine to include code to reproduce the issue, but please do not include code for a proposed fix.
 
-1. Reporting Issues
-If you find a bug or would like to suggest a new feature, please create an Issue using the following steps:
-
-Check if an Issue with the same content has already been created.
-Click "New issue" from the "Issues" tab at the top of the screen.
-Please describe the problem in detail, the steps to reproduce it, and the expected behavior, and submit it.
-
-2. Code Modification/Suggestions (Pull Request)
-Please refrain from sending Pull Requests.
-
-3. Code of Conduct
-To ensure that all participants can develop comfortably, please communicate respectfully and courteously with each other.
+2. Code of Conduct
+To ensure a pleasant development environment for all participants, please communicate respectfully and courteously with one another.
 
 開発への参加ガイド
 
@@ -27,8 +25,7 @@ To ensure that all participants can develop comfortably, please communicate resp
 既に同じ内容の Issue が作成されていないか確認します。
 画面上部の「Issues」タブから「New issue」をクリックします。
 問題の内容、再現手順、期待される動作を詳しく記載して送信してください。
+Issueには再現のためのコードは良いですが、修正案のコードは書かないでください。
 
-2. コードの修正・提案（Pull Request）
-Pull Requestを送ったりすることはご遠慮ください。
-3. 行動規範（Code of Conduct）
+2. 行動規範（Code of Conduct）
 すべての参加者が気持ちよく開発できるよう、お互いに敬意を払った丁寧なコミュニケーションをお願いします。

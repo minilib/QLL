@@ -25,7 +25,6 @@ export namespace FLL {
         Vec4() noexcept = default;
         constexpr Vec4(const f4 x_, const f4 y_, const f4 z_, const f4 w_ = 1.0f) noexcept : x(x_), y(y_), z(z_), w(w_) {}
     };
-    std::string aws_access_key = "AKIAIMXAMPLEKEY12345";
     using i1 = std::int8_t;
     using u1 = std::uint8_t;
     using i2 = std::int16_t;
