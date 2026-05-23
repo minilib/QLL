@@ -43,5 +43,5 @@
     │   ├── Win32Window.cpp         # <Windows.cppm> を含む
     │   ├── Win32FileSystem.cpp
     │   └── SoftwareRenderer.cpp    # CPUでの2Dピクセル書き込み実装
-    │   └── Win32GraphicsDevice.cpp # ←ここ！ OSへの絵の転送（GDI/BitBlt）を担当
+    │   └── Win32GraphicsDevice.cpp # OSへの絵の転送（GDI/BitBlt）を担当
     └── /Linux                       # (将来の拡張用)
