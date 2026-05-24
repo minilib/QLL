@@ -29,19 +29,11 @@
 │   │   └── Component.cppm         # キャラクター・物理定義
 │   └── EngineCore.cppm             # ゲームループ制御
 │
-├── /AppFramework                    # 【アプリ用ライブラリ】GUI・一般ツール用
-│   ├── /UI
-│   │   ├── Canvas.cppm            # アプリ向け2D描画（IRenderer2Dを所有）
-│   │   ├── Widget.cppm            # UI部品の基底（Button, Sliderなど）
-│   │   └── Layout.cppm            # ウィンドウのリサイズ対応など
-│   ├── /Event
-│   │   └── EventDispatcher.cppm   # アプリケーションイベント配信
-│   └── AppCore.cppm                # アプリケーションのライフサイクル
-│
-└── /PlatformImpl                    # 【OS依存の実装】ここだけにOSのヘッダを置く
-    ├── /Win32                       # Windows実装
-    │   ├── Win32Window.cpp         # <Windows.cppm> を含む
-    │   ├── Win32FileSystem.cpp
-    │   └── SoftwareRenderer.cpp    # CPUでの2Dピクセル書き込み実装
-    │   └── Win32GraphicsDevice.cpp # OSへの絵の転送（GDI/BitBlt）を担当
-    └── /Linux                       # (将来の拡張用)
+└── /AppFramework                    # 【アプリ用ライブラリ】GUI・一般ツール用
+    ├── /UI
+    │   ├── Canvas.cppm            # アプリ向け2D描画（IRenderer2Dを所有）
+    │   ├── Widget.cppm            # UI部品の基底（Button, Sliderなど）
+    │   └── Layout.cppm            # ウィンドウのリサイズ対応など
+    ├── /Event
+    │   └── EventDispatcher.cppm   # アプリケーションイベント配信
+    └── AppCore.cppm                # アプリケーションのライフサイクル
