@@ -11,5 +11,7 @@ CompileFlags:
         "-I.",
         "-I./F_Library/include"
     ]
+    Compiler: g++ 
 Index:
     Background: Build
+    

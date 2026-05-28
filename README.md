@@ -1,9 +1,9 @@
 [Japanese] | [English](README.md)
-# FLL
-Foundation Lightweight Library  
+# QLL
+Quick Lightweight Library  
 Status: In development (alpha version)  
 Prerequisites: To use this library, you need a compiler that supports C++26 (e.g., GCC 13 or later, Clang 18 or later, MSVC 2022 17.8 or later). You will also need to adjust your configuration.
-## What is FLL?
+## What is QLL?
 This library can be used for both general app and game development and is planned to become cross-platform in the future.  
 Since I am primarily building this for my own use, I have **not considered backward compatibility at all**.  
 This project is in a very early alpha stage.  
