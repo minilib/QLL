@@ -4,4 +4,6 @@
 *.pcm
 build/
 .cache/
-.vscode
+.vscode/
+.clangd/
+asserts.h

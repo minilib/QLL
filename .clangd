@@ -1,17 +1,15 @@
 CompileFlags:
     Add: [
         "-std=c++26",
-        "-fms-compatibility",
-        "-fms-extensions",
         "-D_WIN32",
         "-D_CRT_SECURE_NO_WARNINGS",
         "-fmodule-file=std=C:/cpp_modules/Clang/std.pcm",
-        "-fmodule-file=FLL.Core.Base.Macros=C:/dev/C++/FLL/Core/pcm/Base/Macros.pcm",
-        "-fmodule-file=FLL.Core.Base.Types=C:/dev/C++/FLL/Core/pcm/Base/Types.pcm",
+        "-fmodule-file=FLL.Core.Base.Macros=C:/dev/C++/QLL/Core/pcm/Base/Macros.pcm",
+        "-fmodule-file=FLL.Core.Base.Types=C:/dev/C++/QLL/Core/pcm/Base/Types.pcm",
         "-I.",
         "-I./F_Library/include"
     ]
-    Compiler: g++ 
+    Compiler: g++
 Index:
     Background: Build
     

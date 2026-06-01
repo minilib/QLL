@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
-export module FLL.Core.Core:Log;
+
+export module QLL.Core.Core:Log;
 import std;
-import FLL.Core.Base.Types;
+import QLL.Core.Base.Types;
 #ifndef LOG_LEVEL
     #ifdef NDEBUG
         #define LOG_LEVEL 3
@@ -10,39 +11,58 @@ import FLL.Core.Base.Types;
     #endif
 #endif
 export namespace FLL {
-    // ログの重要度
-    enum class LogLevel : u1 {
-        Debug,
-        Info,
-        Warning,
-        Error
-    };
-}
-using L = FLL::LogLevel;
-export namespace FLL {
+enum class LogLevel : u1 {
+    Debug,
+    Info,
+    Warning,
+    Error
+};
 class Logger {
     public:
+        /**
+         *@brief Function to output formatted log to standard output
+         *
+         *@tparam Args Specify what to output to the log
+         *@param[in] level Specify log level
+         *@param[in] format Format string input in printf format
+         *@param[in] Value to enter in args format
+         */
         template<typename... Args>
-        static void Log(LogLevel level, const char* format, Args... args) {
+        static void Log(LogLevel level, const char* format, Args... args) {if(static_cast<int>(level) >= LOG_LEVEL) iLog(level, format, args...); }
+        template<typename... Args>
+        static void Debug(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Debug) >= LOG_LEVEL) iLog(LogLevel::Debug, format, args...); }
+        template<typename... Args>
+        static void Info(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Info) >= LOG_LEVEL) iLog(LogLevel::Info, format, args...); }
+        template<typename... Args>
+        static void Warn(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Warning) >= LOG_LEVEL) iLog(LogLevel::Warning, format, args...); }
+        template<typename... Args>
+        static void Error(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Error) >= LOG_LEVEL) iLog(LogLevel::Error, format, args...); }
+    private:
+        static char huge_buffer_[64 * 1024];
+        static inline i8 offset_ = 0;
+        static inline bool timestamp_ = true;
+        Logger() {}
+        template<typename... Args>
+        static void pLog(LogLevel level, const char* format, Args... args) {
             static std::mutex mtx;
             std::lock_guard<std::mutex> lock(mtx);
             char buffer[1024];
             const char* label = "";
             switch(level) {
-                case L::Debug:
+                case LogLevel::Debug:
                     label = "[DEBUG]";
                     break;
-                case L::Info:
+                case LogLevel::Info:
                     label = "[INFO] ";
                     break;
-                case L::Warning:
+                case LogLevel::Warning:
                     label = "[WARN] ";
                     break;
-                case L::Error:
+                case LogLevel::Error:
                     label = "[ERROR]";
                     break;
             }
-            constexpr size_t labelLen = 7;
+            constexpr i8 labelLen = 7;
             if (offset_ + labelLen < sizeof(huge_buffer_) - 1) {
                 std::memcpy(&huge_buffer_[offset_], label, labelLen);
                 offset_ += labelLen;
@@ -50,24 +70,24 @@ class Logger {
             (..., [&](auto val) {
                 if constexpr (std::is_arithmetic_v<decltype(val)>) {
                     auto [ptr, ec] = std::to_chars(buffer, buffer + sizeof(buffer), val);
-                    size_t len = static_cast<size_t>(ptr - buffer);
+                    i8 len = static_cast<i8>(ptr - buffer);
                     if (offset_ + len < sizeof(huge_buffer_) - 1) {
                         std::memcpy(&huge_buffer_[offset_], buffer, len);
                         offset_ += len;
                     } else {
-                        printf("%s", huge_buffer_);
+                        std::printf("%s", huge_buffer_);
                         offset_ = 0;
                         std::memcpy(&huge_buffer_[offset_], buffer, len);
                         offset_ += len;
                     }
                 } else {
                     std::string_view sv = val;
-                    size_t len = sv.size();
+                    i8 len = sv.size();
                     if (offset_ + len < sizeof(huge_buffer_) - 1) {
                         std::memcpy(huge_buffer_ + offset_, sv.data(), len);
                         offset_ += len;
                     } else {
-                        printf("%s", huge_buffer_);
+                        std::printf("%s", huge_buffer_);
                         offset_ = 0;
                         std::memcpy(huge_buffer_, sv.data(), len);
                         offset_ += len;
@@ -75,19 +95,5 @@ class Logger {
                 }
             }(args));
         };
-        template<typename... Args>
-        static void Debug(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(L::Debug) >= LOG_LEVEL) Log(L::Debug, format, args...); }
-        template<typename... Args>
-        static void Info(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(L::Info) >= LOG_LEVEL) Log(L::Info, format, args...); }
-        template<typename... Args>
-        static void Warn(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(L::Warning) >= LOG_LEVEL) Log(L::Warning, format, args...); }
-        template<typename... Args>
-        static void Error(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(L::Error) >= LOG_LEVEL) Log(L::Error, format, args...); }
-    private:
-        static char huge_buffer_[64 * 1024];
-        static inline size_t offset_ = 0;
-        static inline bool timestamp_ = true;
-        Logger() {}
-    };
-
+};
 }
