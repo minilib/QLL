@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
-export module FLL.Core.Base.Types;
+export module QLL.Core.Base.Types;
 import std;
 
 export namespace FLL {

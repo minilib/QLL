@@ -1,4 +1,5 @@
-export module FLL.Core.Math.Vector;
+// SPDX-License-Identifier: MIT OR Apache-2.0
+export module QLL.Core.Math.Vector;
 export namespace FLL {
     template <typename T>
     struct Vec2 {
@@ -8,32 +9,32 @@ export namespace FLL {
             Vec2 operator+(const Vec2& vec) {
                 return Vec2(x_ + vec.x_, y_ + vec.y_);
             }
-            Vec2 operator+=(const Vec2& vec) {
+            Vec2 operator+=(const Vec2& vec) noexcept {
                 x_ += vec.x_;
                 y_ += vec.y_;
                 return *this;
             }
-            Vec2 operator-=(const Vec2& vec) {
+            Vec2 operator-=(const Vec2& vec) noexcept {
                 x_ -= vec.x_;
                 y_ -= vec.y_;
                 return *this;
             }
-            Vec2 operator*=(const Vec2& vec) {
+            Vec2 operator*=(const Vec2& vec) noexcept {
                 x_ *= vec.x_;
                 y_ *= vec.y_;
                 return *this;
             }
-            Vec2 operator*=(const T scalar) {
+            Vec2 operator*=(const T scalar) noexcept {
                 x_ *= scalar;
                 y_ *= scalar;
                 return *this;
             }
-            Vec2 operator/=(const Vec2& vec) {
+            Vec2 operator/=(const Vec2& vec) noexcept {
                 x_ /= vec.x_;
                 y_ /= vec.y_;
                 return *this;
             }
-            Vec2 operator/=(const T scalar) {
+            Vec2 operator/=(const T scalar) noexcept {
                 x_ /= scalar;
                 y_ /= scalar;
                 return *this;
@@ -42,32 +43,32 @@ export namespace FLL {
             T x_, y_;
     };
     template <typename T>
-    Vec2<T> operator+(Vec2<T> lhs, const Vec2<T>& rhs) {
+    Vec2<T> operator+(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
         lhs += rhs;
         return lhs;
     }
     template <typename T>
-    Vec2<T> operator-(Vec2<T> lhs, const Vec2<T>& rhs) {
+    Vec2<T> operator-(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
         lhs -= rhs;
         return lhs;
     }
     template <typename T>
-    Vec2<T> operator*(Vec2<T> lhs, const Vec2<T>& rhs) {
+    Vec2<T> operator*(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
         lhs *= rhs;
         return lhs;
     }
     template <typename T>
-    Vec2<T> operator*(Vec2<T> vec, T scalar) {
+    Vec2<T> operator*(Vec2<T> vec, T scalar) noexcept {
         vec *= scalar;
         return vec;
     }
     template <typename T>
-    Vec2<T> operator/(Vec2<T> lhs, const Vec2<T>& rhs) {
+    Vec2<T> operator/(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
         lhs /= rhs;
         return lhs;
     }
     template <typename T>
-    Vec2<T> operator/(Vec2<T> vec, T scalar) {
+    Vec2<T> operator/(Vec2<T> vec, T scalar) noexcept {
         vec /= scalar;
         return vec;
     }

@@ -1,2 +1,2 @@
-clang++ -std=c++26 -stdlib=libc++ -g -x c++-module -Xclang -fmodule-format=obj "include/Base/Macros.cppm" --precompile -o "pcm/Base/Macros.pcm" -fmodule-file=std=C:/cpp_modules/Clang/std.pcm
-clang++ -std=c++26 -stdlib=libc++ -g -x c++-module -Xclang -fmodule-format=obj "include/Base/Types.cppm" --precompile -o "pcm/Base/Types.pcm" -fmodule-file=std=C:/cpp_modules/Clang/std.pcm
+clang++ -std=c++26 -stdlib=libc++ -g -x c++-module -D_WIN32 -D_CRT_SECURE_NO_WARNINGS "include/Base/Macros.cppm" --precompile -o "pcm/Base/Macros.pcm" -fmodule-file=std=C:/cpp_modules/Clang/std.pcm
+clang++ -std=c++26 -stdlib=libc++ -g -x c++-module -D_WIN32 -D_CRT_SECURE_NO_WARNINGS  "include/Base/Types.cppm" --precompile -o "pcm/Base/Types.pcm" -fmodule-file=std=C:/cpp_modules/Clang/std.pcm

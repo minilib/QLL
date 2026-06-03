@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
-export module FLL.Core.Base.Macros;
+export module QLL.Core.Base.Macros;
 
 // 1. OS・コンパイラ判定
 #if defined(_WIN32)
