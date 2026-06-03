@@ -8,8 +8,9 @@ CompileFlags:
         "-fmodule-file=std=C:/cpp_modules/Clang/std.pcm",
         "-fmodule-file=QLL.Core.Base.Macros=C:/dev/C++/QLL/Core/pcm/Base/Macros.pcm",
         "-fmodule-file=QLL.Core.Base.Types=C:/dev/C++/QLL/Core/pcm/Base/Types.pcm",
-        "-I.",
-        "-I./F_Library/include",
+        "-fmodule-file=QLL.Core.Math.Vector=C:/dev/C++/QLL/Core/pcm/Base/Vector.pcm",
+        "-IC:/dev/C++/QLL",
+        "-IC:/dev/C++/QLL/Core/include",
     ]
     Compiler: C:/msys64/clang64/bin/clang++.exe
 Index:

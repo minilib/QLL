@@ -4,71 +4,71 @@ export namespace FLL {
     template <typename T>
     struct Vec2 {
         public:
-            Vec2() noexcept {}
-            Vec2(T x, T y) noexcept : x_(x), y_(y) {}
-            Vec2 operator+(const Vec2& vec) {
-                return Vec2(x_ + vec.x_, y_ + vec.y_);
+            constexpr Vec2() noexcept {}
+            constexpr Vec2(T x, T y) noexcept : x(x), y(y) {}
+            constexpr Vec2 operator+(const Vec2& vec) {
+                return Vec2(x + vec.x, y + vec.y);
             }
-            Vec2 operator+=(const Vec2& vec) noexcept {
-                x_ += vec.x_;
-                y_ += vec.y_;
+            constexpr Vec2 operator+=(const Vec2& vec) noexcept {
+                x += vec.x;
+                y += vec.y;
                 return *this;
             }
-            Vec2 operator-=(const Vec2& vec) noexcept {
-                x_ -= vec.x_;
-                y_ -= vec.y_;
+            constexpr Vec2 operator-=(const Vec2& vec) noexcept {
+                x -= vec.x;
+                y -= vec.y;
                 return *this;
             }
-            Vec2 operator*=(const Vec2& vec) noexcept {
-                x_ *= vec.x_;
-                y_ *= vec.y_;
+            constexpr Vec2 operator*=(const Vec2& vec) noexcept {
+                x *= vec.x;
+                y *= vec.y;
                 return *this;
             }
-            Vec2 operator*=(const T scalar) noexcept {
-                x_ *= scalar;
-                y_ *= scalar;
+            constexpr Vec2 operator*=(const T scalar) noexcept {
+                x *= scalar;
+                y *= scalar;
                 return *this;
             }
-            Vec2 operator/=(const Vec2& vec) noexcept {
-                x_ /= vec.x_;
-                y_ /= vec.y_;
+            constexpr Vec2 operator/=(const Vec2& vec) noexcept {
+                x /= vec.x;
+                y /= vec.y;
                 return *this;
             }
-            Vec2 operator/=(const T scalar) noexcept {
-                x_ /= scalar;
-                y_ /= scalar;
+            constexpr Vec2 operator/=(const T scalar) noexcept {
+                x /= scalar;
+                y /= scalar;
                 return *this;
             }
         private:
-            T x_, y_;
+            T x, y;
     };
     template <typename T>
-    Vec2<T> operator+(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
+    constexpr Vec2<T> operator+(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
         lhs += rhs;
         return lhs;
     }
     template <typename T>
-    Vec2<T> operator-(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
+    constexpr Vec2<T> operator-(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
         lhs -= rhs;
         return lhs;
     }
     template <typename T>
-    Vec2<T> operator*(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
+    constexpr Vec2<T> operator*(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
         lhs *= rhs;
         return lhs;
     }
     template <typename T>
-    Vec2<T> operator*(Vec2<T> vec, T scalar) noexcept {
+    constexpr Vec2<T> operator*(Vec2<T> vec, T scalar) noexcept {
         vec *= scalar;
         return vec;
     }
     template <typename T>
-    Vec2<T> operator/(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
+    constexpr Vec2<T> operator/(Vec2<T> lhs, const Vec2<T>& rhs) noexcept {
         lhs /= rhs;
         return lhs;
     }
     template <typename T>
-    Vec2<T> operator/(Vec2<T> vec, T scalar) noexcept {
+    constexpr Vec2<T> operator/(Vec2<T> vec, T scalar) noexcept {
         vec /= scalar;
         return vec;
     }
