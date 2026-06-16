@@ -16,21 +16,21 @@ class Time {
     public:
         Time() noexcept : time_(0) {}
         Time(nanoseconds time) noexcept : time_(time) {}
-        float asSecF() noexcept {return duration_cast<duration<float>>(time_).count(); }
-        double asSecD() noexcept {return duration_cast<duration<double>>(time_).count(); }
-        long long asSecI() noexcept {return duration_cast<Sec>(time_).count(); }
+        f4 asSecF() noexcept {return duration_cast<duration<f4>>(time_).count(); }
+        f8 asSecD() noexcept {return duration_cast<duration<f8>>(time_).count(); }
+        i8 asSecI() noexcept {return duration_cast<Sec>(time_).count(); }
         Sec asSecC() noexcept {return duration_cast<Sec>(time_); }
-        float asMsF() noexcept {return duration_cast<duration<float, milli>>(time_).count(); }
-        double asMsD() noexcept {return duration_cast<duration<double, milli>>(time_).count(); }
-        long long asMsI() noexcept {return duration_cast<MS>(time_).count(); }
+        f4 asMsF() noexcept {return duration_cast<duration<f4, milli>>(time_).count(); }
+        f8 asMsD() noexcept {return duration_cast<duration<f8, milli>>(time_).count(); }
+        i8 asMsI() noexcept {return duration_cast<MS>(time_).count(); }
         MS asMsC() noexcept {return duration_cast<MS>(time_); }
-        float asUsF() noexcept {return duration_cast<duration<float, micro>>(time_).count(); }
-        double asUsD() noexcept {return duration_cast<duration<double, micro>>(time_).count(); }
-        long long asUsI() noexcept {return duration_cast<US>(time_).count(); }
+        f4 asUsF() noexcept {return duration_cast<duration<f4, micro>>(time_).count(); }
+        f8 asUsD() noexcept {return duration_cast<duration<f8, micro>>(time_).count(); }
+        i8 asUsI() noexcept {return duration_cast<US>(time_).count(); }
         US asUsC() noexcept {return duration_cast<US>(time_); }
-        float asNsF() noexcept {return duration_cast<duration<float, nano>>(time_).count(); }
-        double asNsD() noexcept {return duration_cast<duration<double, nano>>(time_).count(); }
-        long long asNsI() noexcept {return duration_cast<NS>(time_).count(); }
+        f4 asNsF() noexcept {return duration_cast<duration<f4, nano>>(time_).count(); }
+        f8 asNsD() noexcept {return duration_cast<duration<f8, nano>>(time_).count(); }
+        i8 asNsI() noexcept {return duration_cast<NS>(time_).count(); }
         NS asNsC() noexcept {return duration_cast<NS>(time_); }
     private:
         nanoseconds time_;
