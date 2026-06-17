@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
 export module QLL.Core.Math.Vector;
 export namespace FLL {
+    /**
+     * @brief 2-element vector
+     * 
+     * @tparam T number type
+     */
     template <typename T>
     struct Vec2 {
         public:

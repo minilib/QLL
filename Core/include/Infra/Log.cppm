@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
-
 export module QLL.Core.Infra.Log;
 import std;
 import QLL.Core.Base.Types;
