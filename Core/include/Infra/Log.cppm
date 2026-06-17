@@ -10,6 +10,7 @@ import QLL.Core.Base.Types;
         #define LOG_LEVEL 1
     #endif
 #endif
+std::mutex logMutex;
 export namespace FLL {
 enum class LogLevel : u1 {
     Debug,
@@ -17,6 +18,11 @@ enum class LogLevel : u1 {
     Warning,
     Error
 };
+/**
+ * @brief put log to stdout
+ * @details use @c std::mutex , so threadsafe.
+ * @note Since write operations are performed synchronously, performance may degrade if called from many threads.
+ */
 class Logger {
     public:
         /**
@@ -25,16 +31,44 @@ class Logger {
          *@tparam Args Specify what to output to the log
          *@param[in] level Specify log level
          *@param[in] format Format string input in printf format
-         *@param[in] Value to enter in args format
+         *@param[in] args to enter in args format
          */
         template<typename T, typename... Args>
         static void Log(LogLevel level, const char* format, Args... args) {if(static_cast<int>(level) >= LOG_LEVEL) iLog(level, std::forward<T>(format), args...); }
+        /**
+         * @copybrief Log()
+         * @details Internally, the log level is fixed to @c Debug when it is called.
+         * @tparam Args Specify what to output to the log
+         * @param[in] format Format string input in printf format
+         * @param[in] args to enter in args format
+         */
         template<typename T, typename... Args>
         static void Debug(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Debug) >= LOG_LEVEL) iLog(LogLevel::Debug, std::forward<T>(format), args...); }
+        /**
+         * @copybrief Log()
+         * @details Internally, the log level is fixed to @c Info when it is called.
+         * @tparam Args Specify what to output to the log
+         * @param[in] format Format string input in printf format
+         * @param[in] args to enter in args format
+         */
         template<typename T, typename... Args>
         static void Info(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Info) >= LOG_LEVEL) iLog(LogLevel::Info, std::forward<T>(format), args...); }
+        /**
+         * @copybrief Log()
+         * @details Internally, the log level is fixed to @c Warn when it is called.
+         * @tparam Args Specify what to output to the log
+         * @param[in] format Format string input in printf format
+         * @param[in] args to enter in args format
+         */
         template<typename T, typename... Args>
         static void Warn(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Warning) >= LOG_LEVEL) iLog(LogLevel::Warning, std::forward<T>(format), args...); }
+        /**
+         * @copybrief Log()
+         * @details Internally, the log level is fixed to @c Error when it is called.
+         * @tparam Args Specify what to output to the log
+         * @param[in] format Format string input in printf format
+         * @param[in] args to enter in args format
+         */
         template<typename T, typename... Args>
         static void Error(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Error) >= LOG_LEVEL) iLog(LogLevel::Error, std::forward<T>(format), args...); }
     private:
@@ -42,6 +76,7 @@ class Logger {
         Logger() {}
         template<typename... Args>
         static void iLog(LogLevel level, const char* format, Args... args) {
+            std::lock_guard<std::mutex> lock(logMutex);
             const char* label = "";
             switch(level) {
                 case LogLevel::Debug:
