@@ -1,9 +1,16 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
+
 export module QLL.Core.Math.Rect;
 import QLL.Core.Base.Types;
 import QLL.Core.Math.Vector;
 
 namespace FLL {
+/**
+ * @brief Maintain Rect
+ * 
+ * @note Origin is top-left
+ * @tparam T Number type
+ */
 template<typename T>
 struct Rect {
     Rect() = default;
@@ -12,20 +19,20 @@ struct Rect {
     union {
         struct {Vec2<T> pos, size; };
         struct {
-            f4 x = 0.0f;
-            f4 y = 0.0f;
-            f4 w = 0.0f;
-            f4 h = 0.0f;
+            T x = 0;
+            T y = 0;
+            T w = 0;
+            T h = 0;
         };
     };
     T left() const noexcept {return  x; }
     T right() const noexcept {return x + w; }
     T top() const noexcept {return y; }
     T bottom() const noexcept {return y + h; }
-    Vec2<T> leftTop() const noexcept {return {x, y}; }
-    Vec2<T> rightTop() const noexcept {return {x + w, y}; }
-    Vec2<T> leftBottom() const noexcept {return {x, y+ h}; }
-    Vec2<T> rightBottom() const noexcept {return {x + w, y+ h}; }
+    Vec2<T> topLeft() const noexcept {return {x, y}; }
+    Vec2<T> topRight() const noexcept {return {x + w, y}; }
+    Vec2<T> bottomLeft() const noexcept {return {x, y+ h}; }
+    Vec2<T> bottomRight() const noexcept {return {x + w, y+ h}; }
     Vec2<T> center() const noexcept {return {x + w / 2, y + h / 2}; }
     Rect move(T dx, T dy) noexcept {
         x += dx;

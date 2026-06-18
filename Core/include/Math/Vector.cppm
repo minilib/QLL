@@ -4,7 +4,7 @@ export namespace FLL {
     /**
      * @brief 2-element vector
      * 
-     * @tparam T number type
+     * @tparam T Number type
      */
     template <typename T>
     struct Vec2 {

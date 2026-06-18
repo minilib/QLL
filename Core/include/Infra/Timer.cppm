@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
 
-
 export module QLL.Core.Base.Timer;
 import QLL.Core.Base.Types;
 import std;
