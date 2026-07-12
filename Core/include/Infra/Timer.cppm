@@ -44,11 +44,11 @@ public:
     Timer() noexcept : startTime_(sNow()), lastFrameTime_(sNow()) {}
     void Reset() noexcept {startTime_ = lastFrameTime_ = sNow(); }
     /**
-     * @brief Measure the time from the start
+     * @brief Measure the time since the timer started
      */
     Time get() const noexcept {return {sNow() - startTime_}; }
     /**
-     * @brief Measure the time elapsed since the last call to this function
+     * @brief Measure the time elapsed since this function was called
      */
     Time getDeltaTime() noexcept {
         steady_clock::time_point nowTime = sNow();
