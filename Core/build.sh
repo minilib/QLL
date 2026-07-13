@@ -1,0 +1,4 @@
+clang++ -std=c++26 -stdlib=libc++ -g -x c++-module -D_WIN32 -D_CRT_SECURE_NO_WARNINGS "C:/msys64/clang64/share/libc++/v1/std.cppm" --precompile -o "pcm/std.pcm"
+clang++ -std=c++26 -stdlib=libc++ -g -x c++-module -D_WIN32 -D_CRT_SECURE_NO_WARNINGS "include/Base/Macros.cppm" --precompile -o "pcm/Base/Macros.pcm" -fmodule-file=std=../std.pcm
+clang++ -std=c++26 -stdlib=libc++ -g -x c++-module -D_WIN32 -D_CRT_SECURE_NO_WARNINGS  "include/Base/Types.cppm" --precompile -o "pcm/Base/Types.pcm" -fmodule-file=std=../std.pcm
+clang++ -std=c++26 -stdlib=libc++ -g -x c++-module -D_WIN32 -D_CRT_SECURE_NO_WARNINGS  "include/Math/Vector.cppm" --precompile -o "pcm/Base/Vector.pcm"
