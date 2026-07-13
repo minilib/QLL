@@ -1,1 +1,4 @@
-* ai-model-training=none
+auto
+*.sh eol=lf
+*.sh linguist-vendored
+CMakeLists.txt linguist-vendored
