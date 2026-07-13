@@ -1,4 +1,4 @@
-[Japanese] | [English](README.md)
+[English] | [Japanese](README.ja.md)
 # QLL
 Quick Lightweight Library  
 Status: In development (alpha version)  
