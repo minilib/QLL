@@ -11,8 +11,8 @@ import QLL.Core.Base.Types;
     #endif
 #endif
 std::mutex logMutex;
-export namespace FLL {
-enum class LogLevel : u1 {
+namespace FLL {
+export enum class LogLevel : u1 {
     Debug,
     Info,
     Warning,
@@ -25,6 +25,10 @@ enum class LogLevel : u1 {
  */
 class Logger {
     public:
+        static Logger& getInstance() {
+            static Logger instance;
+            return instance;
+        }
         /**
          *@brief Function to output formatted log to standard output
          *
@@ -34,7 +38,7 @@ class Logger {
          *@param[in] args to enter in args format
          */
         template<typename T, typename... Args>
-        static void Log(LogLevel level, const char* format, Args... args) {if(static_cast<int>(level) >= LOG_LEVEL) iLog(level, std::forward<T>(format), args...); }
+        void Log(LogLevel level, const char* format, Args... args) {if(static_cast<int>(level) >= LOG_LEVEL) iLog(level, std::forward<T>(format), args...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Debug when it is called.
@@ -43,7 +47,7 @@ class Logger {
          * @param[in] args to enter in args format
          */
         template<typename T, typename... Args>
-        static void Debug(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Debug) >= LOG_LEVEL) iLog(LogLevel::Debug, std::forward<T>(format), args...); }
+        void Debug(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Debug) >= LOG_LEVEL) iLog(LogLevel::Debug, std::forward<T>(format), args...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Info when it is called.
@@ -52,7 +56,7 @@ class Logger {
          * @param[in] args to enter in args format
          */
         template<typename T, typename... Args>
-        static void Info(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Info) >= LOG_LEVEL) iLog(LogLevel::Info, std::forward<T>(format), args...); }
+        void Info(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Info) >= LOG_LEVEL) iLog(LogLevel::Info, std::forward<T>(format), args...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Warn when it is called.
@@ -61,7 +65,7 @@ class Logger {
          * @param[in] args to enter in args format
          */
         template<typename T, typename... Args>
-        static void Warn(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Warning) >= LOG_LEVEL) iLog(LogLevel::Warning, std::forward<T>(format), args...); }
+        void Warn(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Warning) >= LOG_LEVEL) iLog(LogLevel::Warning, std::forward<T>(format), args...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Error when it is called.
@@ -70,12 +74,12 @@ class Logger {
          * @param[in] args to enter in args format
          */
         template<typename T, typename... Args>
-        static void Error(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Error) >= LOG_LEVEL) iLog(LogLevel::Error, std::forward<T>(format), args...); }
+        void Error(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Error) >= LOG_LEVEL) iLog(LogLevel::Error, std::forward<T>(format), args...); }
     private:
-        static inline bool timestamp_ = true;
+        bool timestamp_ = true;
         Logger() {}
         template<typename... Args>
-        static void iLog(LogLevel level, const char* format, Args... args) {
+        void iLog(LogLevel level, const char* format, Args... args) {
             std::lock_guard<std::mutex> lock(logMutex);
             const char* label = "";
             switch(level) {
@@ -95,4 +99,5 @@ class Logger {
             std::print(format, label, std::forward<Args>(args)...);
         };
 };
+inline Logger& Log = Logger::getInstance();
 }
