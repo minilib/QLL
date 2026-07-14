@@ -10,7 +10,6 @@
 │   │   └── Rect.cppm              # 矩形定義（2D描画・UI用）
 │   ├── /Graphics
 │   │   ├── Color.cppm             # RGBA色定義
-│   │   └── IRenderer2D.cppm       # 2D描画の純粋仮想インターフェース
 │   ├── /Platform
 │   │   ├── Window.cppm            # IWindowインターフェース
 │   │   ├── Input.cppm             # キー入力・マウスイベント定義
