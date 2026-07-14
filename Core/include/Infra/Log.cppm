@@ -5,13 +5,13 @@ import std;
 import QLL.Core.Base.Types;
 #ifndef LOG_LEVEL
     #ifdef NDEBUG
-        #define LOG_LEVEL 3
+        constexpr int LOG_LEVEL = 3;
     #else
-        #define LOG_LEVEL 1
+        constexpr int LOG_LEVEL = 0;
     #endif
 #endif
 std::mutex logMutex;
-namespace FLL {
+namespace QLL {
 export enum class LogLevel : u1 {
     Debug,
     Info,

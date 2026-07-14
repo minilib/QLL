@@ -6,13 +6,13 @@ import std;
 using namespace std;
 using namespace chrono;
 inline steady_clock::time_point sNow() {return steady_clock::now(); }
-namespace FLL {
+namespace QLL {
     using Sec = seconds;
     using MS = milliseconds;
     using US = microseconds;
     using NS = nanoseconds;
 };
-export namespace FLL {
+export namespace QLL {
 /**
  * @brief Obtain time and delta time
  */

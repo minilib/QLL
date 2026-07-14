@@ -2,7 +2,7 @@
 export module QLL.Core.Base.Types;
 import std;
 
-export namespace FLL {
+export namespace QLL {
     #if defined(__STDCPP_FLOAT64_T__)
         using f4 = std::float32_t;
         using f8 = std::float64_t;

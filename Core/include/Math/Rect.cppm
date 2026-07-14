@@ -4,7 +4,7 @@ export module QLL.Core.Math.Rect;
 import QLL.Core.Base.Types;
 import QLL.Core.Math.Vector;
 
-namespace FLL {
+namespace QLL {
 /**
  * @brief Maintain Rect
  * 
