@@ -8,11 +8,15 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Fetch traffic data
-        uses: jasonetco/github-repo-stats@v3
-        env:
-          GH_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
+        uses: jgehrcke/github-repo-stats@v1.4.2
+        with:
+          ghtoken: ${{ secrets.API_TOKEN_GITHUB }}
+          repository: minilib/QLL
+          databranch: github-repo-stats
