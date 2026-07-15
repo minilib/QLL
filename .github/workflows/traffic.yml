@@ -17,6 +17,6 @@ jobs:
       - name: Fetch traffic data
         uses: jgehrcke/github-repo-stats@main
         with:
-          ghtoken: ${{ secrets.GITHUB_TOKEN }}
+          ghtoken: ${{ secrets.API_TOKEN_GITHUB }}
           repository: minilib/QLL
           databranch: github-repo-stats
