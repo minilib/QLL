@@ -13,6 +13,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Fetch traffic data
-        uses: jgehrcke/github-repo-stats@v3
+        uses: jgehrcke/github-repo-stats@main
         env:
           GH_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
