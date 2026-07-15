@@ -5,6 +5,4 @@
 build/
 .cache/
 .vscode/
-.clangd/
-asserts.h
 *.sh
