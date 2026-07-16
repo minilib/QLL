@@ -6,9 +6,9 @@ CompileFlags:
         "-g",
         "-D_WIN32",
         "-D_CRT_SECURE_NO_WARNINGS",
-        "C:/dev/C++/QLL/Core/build/CMakeFiles/cmake_cxx_std.dir/C_/msys64/clang64/share/libc++/v1/std.cppm.obj",
         "-IC:/dev/C++/QLL",
         "-IC:/dev/C++/QLL/Core/include",
+        "-fprebuilt-module-path=C:/dev/C++/QLL/build/Core/CMakeFiles/QLL_Core.dir/"
     ]
     Compiler: C:/msys64/clang64/bin/clang++.exe
 Index:

@@ -9,11 +9,5 @@ set_target_properties(QLL_Core PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${OUTPUT_DIR}"
 )
 target_include_directories(QLL_Core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_sources(QLL_Core PUBLIC FILE_SET modules TYPE CXX_MODULES BASE_DIRS FILES
-    include/Base/Macros.cppm
-    include/Base/Types.cppm
-    include/Infra/Log.cppm
-    include/Infra/Timer.cppm
-    include/Math/Rect.cppm
-    include/Math/Vector.cppm
-)
+file(GLOB_RECURSE CORE_SOURCES CONFIGURE_DEPENDS "*.cppm")
+target_sources(QLL_Core PUBLIC FILE_SET modules TYPE CXX_MODULES BASE_DIRS FILES ${CORE_SOURCES})
