@@ -1,8 +1,0 @@
-*.o
-*.obj
-*.exe
-*.pcm
-build/
-.cache/
-.vscode/
-*.sh
