@@ -1,24 +1,26 @@
-[日本語] | [English](README.md)
+[English] | [Japanese](README.ja.md)
 # QLL
 Quick Lightweight Library  
-ステータス: 開発中（アルファ版）  
-必要条件: ライブラリを使用するには、C++20をサポートするコンパイラ（例: GCC 13以降、Clang 18以降、MSVC 2022 17.8以降）が必要です。また、設定を調整してください。
-## QLLとは
-通常のアプリとゲーム開発でのどちらでも利用できるライブラリで将来的にクロスプラットフォームになる予定です。  
-主に自分用に作っているため、 後方互換性は**一切考えていません**。  
-このプロジェクトは非常に初期のアルファ版段階です。  
-* 現時点では **使用しないでください**。完全に動作せず、機能も不完全です。  
-* 今後6ヶ月以上かけて、コードの追加とコアアーキテクチャの書き換えを積極的に進めていきます。  
-* テストを**全く行っていません**。そのため、バグが出ると思います。  
-OS依存のコードでは最初にWindowsのコードを書く予定ですが、将来的にLinuxとMacに対応する予定です。
-もしコードを修正、開発したいときはClang(できれば22.1.3)を使用してください。
-## ライセンスについて
-このプロジェクトは、**MIT-0**、**zlib**、**MIT**、**Apache-2.0**の4つのライセンスで提供されています。
-どのライセンスの条件でも、このプロジェクトをご利用いただけます。
-詳細はLICENSEをご覧ください。
-## 構成
-このライブラリは三つの部分に分かれています。  
-1. Core: これはどちらの部分からも読み込まれるもので、基盤となるものです。作りたいもののIRenderer2Dを選べば、基本的なウィンドウ作成、描画、画像の読み込みなどがあるため、かなり有用性があると思います。
-2. AppFlamgeWork: 通常のアプリ用のもので、UIの作成機能やウィンドウのリサイズ対応などがあります。  
-3. Engine: ゲーム用で、シーンやゲームループ、レンダラーなどがあります。2Dは必ず完成すると思いますが、3Dは構造が複雑なため、完成しないかもしれません。また完成するとしても3年後ぐらいになると思います。
+Status: In development (alpha version)  
+Requirements: A compiler that supports C++20 (e.g., GCC 13 or later, Clang 18 or later, MSVC 2022 17.8 or later), CMake 4.4
+## What is QLL?
+This library can be used for both general app and game development and is planned to become cross-platform in the future.  
+Since I’m primarily building this for my own use, I’m **not concerned with compatibility at all**.  
+This project is in a very early alpha stage.  
+* **Please do not use it** at this time. It does not work properly, and its features are incomplete.  
+* Over the next six months or more, I will be actively adding code and rewriting the core architecture.  
+* I have **not performed any testing**. Therefore, you can expect to encounter bugs.  
+For OS-dependent code, I plan to write the Windows code first, but I intend to add support for Linux and Mac in the future.
+If you wish to modify or develop the code, please use Clang (preferably 22.1.3).
+## About the License
+This project is provided under four licenses: **MIT-0**, **zlib**, **MIT**, and **Apache-2.0**.
+You may use this project under the terms of any of these licenses.
+Please see the LICENSE file for details.
+## Structure
+This library is divided into three parts.  
+1. Core: This is the foundation, loaded by both other components. If you choose *IRenderer2D* for your project, you’ll find it quite useful, as it includes basic window creation, rendering, and image loading.
+2. AppFramework: Designed for standard applications, it includes UI creation features and support for window resizing.  
+3. Engine: Designed for games, this includes scenes, game loops, and renderers. I’m confident the 2D version will be completed, but the 3D version may not be finished due to its complex structure. Even if it is completed, I expect it will take about three years.
 ![](https://pixel.flatypus.me/minilib-qll)
+
+Translated with DeepL.com (free version)
