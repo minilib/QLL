@@ -1,5 +1,3 @@
-
-
 add_library(QLL_Core)
 target_compile_features(QLL_Core PUBLIC cxx_std_26)
 set(OUTPUT_DIR "${CMAKE_BINARY_DIR}/bin")
