@@ -24,10 +24,10 @@ export enum class LogLevel : u1 {
  * @details use @c std::mutex , so threadsafe.
  * @note Since write operations are performed synchronously, performance may degrade if called from many threads.
  */
-class Logger {
+class LoggerImpl {
     public:
-        static Logger& getInstance() {
-            static Logger instance;
+        static LoggerImpl& getInstance() {
+            static LoggerImpl instance;
             return instance;
         }
         /**
@@ -78,7 +78,7 @@ class Logger {
         void Error(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Error) >= LOG_LEVEL) iLog(LogLevel::Error, std::forward<T>(format), args...); }
     private:
         bool timestamp_ = true;
-        Logger() {}
+        LoggerImpl() {}
         template<typename... Args>
         void iLog(LogLevel level, const char* format, Args... args) {
             std::lock_guard<std::mutex> lock(logMutex);
@@ -100,5 +100,5 @@ class Logger {
             std::print(format, label, std::forward<Args>(args)...);
         };
 };
-inline Logger& Log = Logger::getInstance();
+inline LoggerImpl& Logger = LoggerImpl::getInstance();
 }
