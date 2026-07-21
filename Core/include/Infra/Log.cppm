@@ -12,8 +12,8 @@ import QLL.Core.Base.Types;
     #endif
 #endif
 std::mutex logMutex;
-namespace QLL {
-export enum class LogLevel : u1 {
+export namespace QLL {
+enum class LogLevel : u1 {
     Debug,
     Info,
     Warning,
@@ -24,10 +24,10 @@ export enum class LogLevel : u1 {
  * @details use @c std::mutex , so threadsafe.
  * @note Since write operations are performed synchronously, performance may degrade if called from many threads.
  */
-class LoggerImpl {
+class Logger {
     public:
-        static LoggerImpl& getInstance() {
-            static LoggerImpl instance;
+        static Logger& getInstance() {
+            static Logger instance;
             return instance;
         }
         /**
@@ -78,7 +78,7 @@ class LoggerImpl {
         void Error(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Error) >= LOG_LEVEL) iLog(LogLevel::Error, std::forward<T>(format), args...); }
     private:
         bool timestamp_ = true;
-        LoggerImpl() {}
+        Logger() {}
         template<typename... Args>
         void iLog(LogLevel level, const char* format, Args... args) {
             std::lock_guard<std::mutex> lock(logMutex);
@@ -100,5 +100,5 @@ class LoggerImpl {
             std::print(format, label, std::forward<Args>(args)...);
         };
 };
-export inline LoggerImpl& Logger = LoggerImpl::getInstance();
+inline Logger& Log = Logger::getInstance();
 }
