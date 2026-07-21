@@ -7,3 +7,4 @@ build/
 .vscode/
 pcm/
 compile_commands.json
+.clangd
