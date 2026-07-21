@@ -44,7 +44,7 @@ struct Rect {
         pos += vec;
         return *this;
     }
-    Rect scale(T scaleX, T scaleY) {
+    Rect scale(T scaleX, T scaleY) noexcept {
         x *= scaleX;
         y *= scaleY;
         return *this;
