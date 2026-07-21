@@ -100,5 +100,5 @@ class LoggerImpl {
             std::print(format, label, std::forward<Args>(args)...);
         };
 };
-inline LoggerImpl& Logger = LoggerImpl::getInstance();
+export inline LoggerImpl& Logger = LoggerImpl::getInstance();
 }
