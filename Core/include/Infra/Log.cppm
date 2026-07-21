@@ -39,7 +39,7 @@ class Logger {
          *@param[in] args to enter in args format
          */
         template<typename T, typename... Args>
-        void Log(LogLevel level, const char* format, Args... args) {if(static_cast<int>(level) >= LOG_LEVEL) iLog(level, std::forward<T>(format), args...); }
+        void log(LogLevel level, const char* format, Args... args) {if(static_cast<int>(level) >= LOG_LEVEL) iLog(level, std::forward<T>(format), args...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Debug when it is called.
@@ -48,7 +48,7 @@ class Logger {
          * @param[in] args to enter in args format
          */
         template<typename T, typename... Args>
-        void Debug(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Debug) >= LOG_LEVEL) iLog(LogLevel::Debug, std::forward<T>(format), args...); }
+        void debug(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Debug) >= LOG_LEVEL) iLog(LogLevel::Debug, std::forward<T>(format), args...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Info when it is called.
@@ -57,7 +57,7 @@ class Logger {
          * @param[in] args to enter in args format
          */
         template<typename T, typename... Args>
-        void Info(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Info) >= LOG_LEVEL) iLog(LogLevel::Info, std::forward<T>(format), args...); }
+        void info(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Info) >= LOG_LEVEL) iLog(LogLevel::Info, std::forward<T>(format), args...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Warn when it is called.
@@ -66,7 +66,7 @@ class Logger {
          * @param[in] args to enter in args format
          */
         template<typename T, typename... Args>
-        void Warn(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Warning) >= LOG_LEVEL) iLog(LogLevel::Warning, std::forward<T>(format), args...); }
+        void warn(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Warning) >= LOG_LEVEL) iLog(LogLevel::Warning, std::forward<T>(format), args...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Error when it is called.
@@ -75,7 +75,7 @@ class Logger {
          * @param[in] args to enter in args format
          */
         template<typename T, typename... Args>
-        void Error(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Error) >= LOG_LEVEL) iLog(LogLevel::Error, std::forward<T>(format), args...); }
+        void error(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Error) >= LOG_LEVEL) iLog(LogLevel::Error, std::forward<T>(format), args...); }
     private:
         bool timestamp_ = true;
         Logger() {}
