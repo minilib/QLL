@@ -1,5 +1,4 @@
 CompileFlags:
-    CompilationDatabase: "build"
     Add: [
         "-std=c++26",
         "-stdlib=libc++",
@@ -8,8 +7,16 @@ CompileFlags:
         "-D_CRT_SECURE_NO_WARNINGS",
         "-IC:/dev/C++/QLL",
         "-IC:/dev/C++/QLL/Core/include",
-        "-fprebuilt-module-path=C:/dev/C++/QLL/build/Core/CMakeFiles/QLL_Core.dir/"
+        
+-fmodule-file=QLL.Core.Base.Macros=C:/dev/C++/QLL/pcm/QLL.Core.Base.Macros.pcm,
+-fmodule-file=QLL.Core.Base.Types=C:/dev/C++/QLL/pcm/QLL.Core.Base.Types.pcm,
+-fmodule-file=QLL.Core.Infra.Log=C:/dev/C++/QLL/pcm/QLL.Core.Infra.Log.pcm,
+-fmodule-file=QLL.Core.Infra.Timer=C:/dev/C++/QLL/pcm/QLL.Core.Infra.Timer.pcm,
+-fmodule-file=QLL.Core.Math.Rect=C:/dev/C++/QLL/pcm/QLL.Core.Math.Rect.pcm,
+-fmodule-file=QLL.Core.Math.Vector=C:/dev/C++/QLL/pcm/QLL.Core.Math.Vector.pcm,
+-fmodule-file=QLL.Core=C:/dev/C++/QLL/pcm/QLL.Core.pcm,
+-fmodule-file=std.compat=C:/dev/C++/QLL/pcm/std.compat.pcm,
+-fmodule-file=std=C:/dev/C++/QLL/pcm/std.pcm,
     ]
-    Compiler: C:/msys64/clang64/bin/clang++.exe
 Index:
-    Background: Build
+  Background: Build
