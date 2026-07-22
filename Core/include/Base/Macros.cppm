@@ -15,7 +15,7 @@ export module QLL.Core.Base.Macros;
     export constexpr int QLL_IS_COMPILER_GCC = 0;
 #elif defined(__GNUC__) || defined(__clang__)
     export constexpr int QLL_IS_COMPILER_GCC = 1;
-    int QLL_IS_COMPILER_MSVC = 0;
+    export constexpr int QLL_IS_COMPILER_MSVC = 0;
 #endif
 #if defined(_M_X64) || defined(__x86_64__)
     export constexpr int QLL_CPU_X86_64 = 1;
