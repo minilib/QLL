@@ -1,18 +1,9 @@
 // SPDX-License-Identifier: MIT-0 OR Zlib OR MIT OR Apache-2.0
 // //Copyright (c) 2026 minilib
 module;
-#ifndef LOG_LEVEL_M
-    #ifdef NDEBUG 
-        #define LOG_LEVEL_M 3
-    #else 
-        #define LOG_LEVEL_M 0
-    #endif
-#endif
 export module QLL.Core.Infra.Log;
 import std;
 import QLL.Core.Base.Types;
-constexpr int LOG_LEVEL = LOG_LEVEL_M;
-std::mutex logMutex;
 export namespace QLL {
 enum class LogLevel : u1 {
     Debug,
@@ -21,6 +12,24 @@ enum class LogLevel : u1 {
     Error,
     Fatal
 };
+}
+#ifdef NDEBUG 
+    constexpr bool timeStamp = false;
+    #ifdef LOG_LEVEL
+        constexpr QLL::LogLevel logLevel = static_cast<Loglevel>(LOG_LEVEL);
+    #else 
+        constexpr QLL::LogLevel logLevel = QLL::LogLevel::Error;
+    #endif
+#else 
+    bool timeStamp = true;
+    #ifdef LOG_LEVEL
+        QLL::LogLevel logLevel = static_cast<Loglevel>(LOG_LEVEL);
+    #else 
+        QLL::LogLevel logLevel = QLL::LogLevel::Debug;
+    #endif
+#endif
+std::mutex logMutex;
+export namespace QLL {
 /**
  * @brief put log to stdout
  * @details use @c std::mutex , so threadsafe.
@@ -37,49 +46,61 @@ class Logger {
          *
          *@tparam Args Specify what to output to the log
          *@param[in] level Specify log level
-         *@param[in] format Format string input in printf format
+         *@param[in] format Format string input in std::print format
          *@param[in] args to enter in args format
          */
-        template<typename T, typename... Args>
-        void log(LogLevel level, const char* format, Args... args) {if(static_cast<int>(level) >= LOG_LEVEL) iLog(level, std::forward<T>(format), args...); }
+        template<typename... Args>
+        void log(LogLevel level, const char* format, Args... args) {{if (level >= ::logLevel) iLog(level, format, std::forward<Args>(args)...);} }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Debug when it is called.
          * @tparam Args Specify what to output to the log
-         * @param[in] format Format string input in printf format
+         * @param[in] format Format string input in std::print format
          * @param[in] args to enter in args format
          */
-        template<typename T, typename... Args>
-        void debug(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Debug) >= LOG_LEVEL) iLog(LogLevel::Debug, std::forward<T>(format), args...); }
+        template<typename... Args>
+        void debug(const char* format, Args... args) noexcept {if (LogLevel::Debug >= ::logLevel) iLog(LogLevel::Debug, format, std::forward<Args>(args)...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Info when it is called.
          * @tparam Args Specify what to output to the log
-         * @param[in] format Format string input in printf format
+         * @param[in] format Format string input in std::print format
          * @param[in] args to enter in args format
          */
-        template<typename T, typename... Args>
-        void info(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Info) >= LOG_LEVEL) iLog(LogLevel::Info, std::forward<T>(format), args...); }
+        template<typename... Args>
+        void info(const char* format, Args... args) noexcept {if (LogLevel::Info >= ::logLevel) iLog(LogLevel::Info, format, std::forward<Args>(args)...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Warn when it is called.
          * @tparam Args Specify what to output to the log
-         * @param[in] format Format string input in printf format
+         * @param[in] format Format string input in std::print format
          * @param[in] args to enter in args format
          */
-        template<typename T, typename... Args>
-        void warn(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Warning) >= LOG_LEVEL) iLog(LogLevel::Warning, std::forward<T>(format), args...); }
+        template<typename... Args>
+        void warn(const char* format, Args... args) noexcept {if (LogLevel::Warning >= ::logLevel) iLog(LogLevel::Warning, format, std::forward<Args>(args)...); }
         /**
          * @copybrief Log()
          * @details Internally, the log level is fixed to @c Error when it is called.
          * @tparam Args Specify what to output to the log
-         * @param[in] format Format string input in printf format
+         * @param[in] format Format string input in std::print format
          * @param[in] args to enter in args format
          */
-        template<typename T, typename... Args>
-        void error(const char* format, Args... args) noexcept {if constexpr (static_cast<int>(LogLevel::Error) >= LOG_LEVEL) iLog(LogLevel::Error, std::forward<T>(format), args...); }
+        template<typename... Args>
+        void error(const char* format, Args... args) noexcept {if (LogLevel::Error >= ::logLevel) iLog(LogLevel::Error, format, std::forward<Args>(args)...); }
+        /**
+         * @copybrief Log()
+         * @details Internally, the log level is fixed to @c Fatal when it is called.
+         * @tparam Args Specify what to output to the log
+         * @param[in] format Format string input in std::print format
+         * @param[in] args to enter in args format
+         */
+        template<typename... Args>
+        void fatal(const char* format, Args... args) noexcept {iLog(LogLevel::Error, format, std::forward<Args>(args)...); }
+        LogLevel constexpr logLevel() noexcept {return ::logLevel; }
+        void constexpr logLevel(LogLevel level) noexcept {::logLevel = level; }
+        bool constexpr timeStamp() noexcept {return ::timeStamp; }
+        void constexpr timeStamp(bool flag) noexcept {::timeStamp = flag; }
     private:
-        bool timestamp_ = true;
         Logger() {}
         template<typename... Args>
         void iLog(LogLevel level, const char* format, Args... args) {
@@ -98,8 +119,18 @@ class Logger {
                 case LogLevel::Error:
                     label = "[ERROR]";
                     break;
+                case LogLevel::Fatal:
+                    label = "[FATAL]";
+                    break;
             }
-            std::print(format, label, std::forward<Args>(args)...);
+            if (::timeStamp) {
+                auto now = std::chrono::system_clock::now();
+                std::print("{} {} ", now, label);
+                std::println(format, std::forward<Args>(args)...);
+            } else {
+                std::print("{}", label);
+                std::println(format, std::forward<Args>(args)...);
+            }
         };
 };
 inline Logger& Log = Logger::getInstance();
