@@ -1,5 +1,5 @@
 #!/bin/bash
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT-0 OR Zlib OR MIT OR Apache-2.0
 # Copyright (c) 2026 minilib
 set -euo pipefail
 rm -rf build
@@ -19,7 +19,7 @@ else
 fi
 MODULE_FILES=""
 for name in "${PCMS[@]}"; do MODULE_FILES=$(cat << EOF
-$MODULE_FILES
+        $MODULE_FILES
 -fmodule-file=$name=$CURRENT_PATH/pcm/$name.pcm,
 EOF
 ); done
@@ -30,11 +30,10 @@ CompileFlags:
         "-stdlib=libc++",
         "-g",
         "-D_WIN32",
-        "-D_CRT_SECURE_NO_WARNINGS",
-        "-IC:/dev/C++/QLL",
-        "-IC:/dev/C++/QLL/Core/include",$MODULE_FILES
+        "-D_CRT_SECURE_NO_WARNINGS",$MODULE_FILES
     ]
 Index:
-  Background: Build
+    Background: Build
+    Background: Skip
 EOF
 cat .clangd
