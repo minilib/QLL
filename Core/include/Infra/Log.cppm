@@ -1,27 +1,25 @@
 // SPDX-License-Identifier: MIT-0 OR Zlib OR MIT OR Apache-2.0
 // //Copyright (c) 2026 minilib
 module;
-
+#ifndef LOG_LEVEL_M
+    #ifdef NDEBUG 
+        #define LOG_LEVEL_M 3
+    #else 
+        #define LOG_LEVEL_M 0
+    #endif
+#endif
 export module QLL.Core.Infra.Log;
 import std;
 import QLL.Core.Base.Types;
-
+constexpr int LOG_LEVEL = LOG_LEVEL_M;
 std::mutex logMutex;
-constexpr int LOG_LEVEL = 0 +
-#ifdef LOG_LEVEL
-    LOG_LEVEL
-#elif defined(NDEBUG)
-    3
-#else
-    0
-#endif
-;
 export namespace QLL {
 enum class LogLevel : u1 {
     Debug,
     Info,
     Warning,
-    Error
+    Error,
+    Fatal
 };
 /**
  * @brief put log to stdout
