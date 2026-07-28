@@ -7,13 +7,6 @@ import std;
 import QLL.Core.Base.Types;
 
 std::mutex logMutex;
-export namespace QLL {
-enum class LogLevel : u1 {
-    Debug,
-    Info,
-    Warning,
-    Error
-};
 constexpr int LOG_LEVEL = 0 +
 #ifdef LOG_LEVEL
     LOG_LEVEL
@@ -23,6 +16,13 @@ constexpr int LOG_LEVEL = 0 +
     0
 #endif
 ;
+export namespace QLL {
+enum class LogLevel : u1 {
+    Debug,
+    Info,
+    Warning,
+    Error
+};
 /**
  * @brief put log to stdout
  * @details use @c std::mutex , so threadsafe.
