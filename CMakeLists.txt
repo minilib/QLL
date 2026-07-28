@@ -1,13 +1,17 @@
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT-0 OR Zlib OR MIT OR Apache-2.0
 # Copyright (c) 2026 minilib
 cmake_minimum_required(VERSION 4.4)
 set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "f35a9ac6-8463-4d38-8eec-5d6008153e7d")
-project(QLL_Core CXX)
+project(QLL CXX)
 set(CMAKE_CXX_MODULE_STD ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_USE_RESPONSE_FILE_FOR_OBJECTS OFF)
 set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
+if(MSVC)
+    add_compile_options(-D_CRT_SECURE_NO_WARNINGS /W4 /permissive-)
+else()
+    add_compile_options(-stdlib=libc++ -D_WIN32 -D_CRT_SECURE_NO_WARNINGS -Wall -Wextra -Wpedantic)
+endif()
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 add_subdirectory(Core)
 add_subdirectory(tests)
